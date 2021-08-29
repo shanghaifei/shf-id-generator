@@ -1,0 +1,6 @@
+server:
+  port: 9192
+shf:
+  id-generator:
+    machineroomid: 1
+    machineid: 1
