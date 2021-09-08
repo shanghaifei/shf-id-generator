@@ -16,6 +16,9 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <!-- 设置编码为UTF-8 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- springboot版本 -->
         <springboot.version>2.3.0.RELEASE</springboot.version>
     </properties>
 

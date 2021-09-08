@@ -1,6 +1,9 @@
 server:
+  # 服务端口
   port: 9192
 shf:
   id-generator:
+    # 机房ID
     machineroomid: 1
+    # 机器ID
     machineid: 1
