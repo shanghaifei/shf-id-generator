@@ -1,0 +1,1 @@
+docker build -f Dockerfile -t shf-id-generator-server:1.0.0 .

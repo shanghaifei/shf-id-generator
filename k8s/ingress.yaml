@@ -1,0 +1,15 @@
+# 1.vim ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: helloworld
+  namespace: test
+spec:
+  rules:
+    - host: hello.test.cn
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: helloworld
+              servicePort: 8080

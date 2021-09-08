@@ -1,0 +1,13 @@
+# 1.vim service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: shf-id-generator-server
+  namespace: dev
+spec:
+  type: NodePort
+  selector:
+    app: shf-id-generator-server
+  ports:
+    - port: 9192
+      targetPort: 9192

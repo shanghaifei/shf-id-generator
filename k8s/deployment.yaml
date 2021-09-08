@@ -1,0 +1,74 @@
+# 1.vim deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shf-id-generator-server
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shf-id-generator-server
+  template:
+    metadata:
+      name: shf-id-generator-server
+      labels:
+        app: shf-id-generator-server
+    spec:
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+            - "app1.hyfetech.com"
+            - "app2.hyfetech.com"
+            - "app3.hyfetech.com"
+      containers:
+        - name: shf-id-generator-server
+          env:
+            - name: JAVA_OPTS
+              value: "-Xmx128m -Xms128m"
+          image: shf-id-generator-server:1.0.0
+          imagePullPolicy: IfNotPresent
+          # 存活探针
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9192
+            initialDelaySeconds: 200
+            timeoutSeconds: 5
+          # 就绪探针
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9192
+            initialDelaySeconds: 180
+            timeoutSeconds: 5
+          # 端口
+          ports:
+            - containerPort: 9192
+          # 资源
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "500Mi"
+            requests:
+              cpu: "0.5"
+              memory: "500Mi"
+          # 卷挂载
+          volumeMounts:
+            - name: logdir
+              mountPath: /logs
+            - name: localtime
+              mountPath: /etc/localtime
+            - name: timezone
+              mountPath: /etc/timezone
+      imagePullSecrets:
+        - name: harbor
+      volumes:
+        - name: logdir
+          emptyDir: {}
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: timezone
+          hostPath:
+            path: /etc/timezone
