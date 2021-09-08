@@ -15,17 +15,17 @@ spec:
       labels:
         app: shf-id-generator-server
     spec:
-      hostAliases:
-        - ip: "127.0.0.1"
-          hostnames:
-            - "app1.hyfetech.com"
-            - "app2.hyfetech.com"
-            - "app3.hyfetech.com"
+#       hostAliases:
+#         - ip: "127.0.0.1"
+#           hostnames:
+#             - "app1.hyfetech.com"
+#             - "app2.hyfetech.com"
+#             - "app3.hyfetech.com"
       containers:
         - name: shf-id-generator-server
           env:
             - name: JAVA_OPTS
-              value: "-Xmx128m -Xms128m"
+              value: "-Xmx500m -Xms500m"
           image: shf-id-generator-server:1.0.0
           imagePullPolicy: IfNotPresent
           # 存活探针

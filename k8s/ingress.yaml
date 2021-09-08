@@ -2,14 +2,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: helloworld
-  namespace: test
+  name: shf-id-generator-server
+  namespace: dev
 spec:
   rules:
-    - host: hello.test.cn
+    - host: www.hyfetech.com
       http:
         paths:
-          - path: /
+          - path: /shf-id-generator-server
             backend:
-              serviceName: helloworld
-              servicePort: 8080
+              serviceName: shf-id-generator-server
+              servicePort: 9192

@@ -9,5 +9,6 @@ spec:
   selector:
     app: shf-id-generator-server
   ports:
-    - port: 9192
-      targetPort: 9192
+    - port: 80
+      targetPort: 80
+      nodePort: 9192
