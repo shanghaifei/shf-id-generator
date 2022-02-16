@@ -1,14 +1,23 @@
-# 1.vim service.yaml
+# 指定api版本，此值必须在kubectl api-versions中
 apiVersion: v1
+# 资源类型
 kind: Service
+# 元数据
 metadata:
+  # 资源的名字，在同一个namespace中必须唯一
   name: shf-id-generator-server
+  # 部署在哪个namespace中
   namespace: dev
+  # 设定资源的标签
+  labels:
+    app: shf-id-generator-server
+    version: stable
+# 资源规范
 spec:
   type: NodePort
   selector:
     app: shf-id-generator-server
   ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 9192
+    - port: 9192
+      targetPort: 9192
+      nodePort: 30001

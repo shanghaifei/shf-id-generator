@@ -1,10 +1,21 @@
-# 1.vim ingress.yaml
+# 指定api版本，此值必须在kubectl api-versions中
 apiVersion: extensions/v1beta1
+# 资源类型
 kind: Ingress
+# 元数据
+# 元数据
 metadata:
+  # 资源的名字，在同一个namespace中必须唯一
   name: shf-id-generator-server
+  # 部署在哪个namespace中
   namespace: dev
+  # 设定资源的标签
+  labels:
+    app: shf-id-generator-server
+    version: stable
+# 资源规范
 spec:
+  # 规则配置
   rules:
     - host: www.hyfetech.com
       http:
@@ -12,4 +23,4 @@ spec:
           - path: /shf-id-generator-server
             backend:
               serviceName: shf-id-generator-server
-              servicePort: 9192
+              servicePort: 30001
