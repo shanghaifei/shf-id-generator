@@ -13,7 +13,7 @@ public class SnowflakeIdGenerator {
 
     /**
      * 雪花算法
-     * 符号位（1位）+时间戳（41位）+机房ID（5位）+序号（12位）
+     * 符号位（1位）+时间戳（41位）+机房ID（5位）+机器ID（5位）+序号（12位）
      */
     int timeStampBits = 41,machineRoomIdBits = 5,machineIdBits = 5,sequenceBits = 12;
 
